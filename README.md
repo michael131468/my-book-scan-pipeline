@@ -136,6 +136,20 @@ Overall, it produced a good starting point to save time but manual clean up
 was still needed. But the amount of time saved was significant for a book with
 no digital version available.
 
+When I say manual clean up, a lot of that was via sed. Here are some fun sed
+commands I used to clean up the resulting text files.
+
+```
+# Delete lines containing 'string'
+sed -e "/string/d" -i file
+
+# Replace substring in lines
+sed -e "s/xxx/yyy/g" -i file
+
+# Clean up whitespace at start/end of file
+sed -e :a -e "/./,\$!d;/^\n*\$/{\$d;N;};/\n\$/ba" -i file
+```
+
 # Example Data: sample-image and output
 
 I included a sample image of a page from the Great Gatsby (which should hopefully
